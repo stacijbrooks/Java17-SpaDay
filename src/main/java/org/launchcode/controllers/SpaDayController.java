@@ -39,4 +39,4 @@ public class SpaDayController {
 
         return "menu"; // Assuming you have a template named "menu.html"
     }
-}
+}//18 mins on video
