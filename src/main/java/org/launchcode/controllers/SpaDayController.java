@@ -9,42 +9,11 @@ import java.util.ArrayList;
 @Controller
 public class SpaDayController {
 
-    public boolean checkSkinType(String skinType, String facialType) {
-        if (skinType.equals("oily")) {
-            return facialType.equals("Microdermabrasion") || facialType.equals("Rejuvenating");
-        }
-        else if (skinType.equals("combination")) {
-            return facialType.equals("Microdermabrasion") || facialType.equals("Rejuvenating") || facialType.equals("Enzyme Peel");
-        }
-        else if (skinType.equals("dry")) {
-            return facialType.equals("Rejuvenating") || facialType.equals("Hydrofacial");
-        }
-        else {
-            return true;
-        }
-    }
+    // Your existing methods...
 
     @GetMapping(value="")
-    @ResponseBody
     public String customerForm () {
-        String html = "<form method = 'post'>" +
-                "Name: <br>" +
-                "<input type = 'text' name = 'name'>" +
-                "<br>Skin type: <br>" +
-                "<select name = 'skintype'>" +
-                "<option value = 'oily'>Oily</option>" +
-                "<option value = 'combination'>Combination</option>" +
-                "<option value = 'normal'>Normal</option>" +
-                "<option value = 'dry'>Dry</option>" +
-                "</select><br>" +
-                "Manicure or Pedicure? <br>" +
-                "<select name = 'manipedi'>" +
-                "<option value = 'manicure'>Manicure</option>" +
-                "<option value = 'pedicure'>Pedicure</option>" +
-                "</select><br>" +
-                "<input type = 'submit' value = 'Submit'>" +
-                "</form>";
-        return html;
+        return "form"; // Assuming you have a template named "form.html"
     }
 
     @PostMapping(value="")
@@ -57,12 +26,17 @@ public class SpaDayController {
         facials.add("Enzyme Peel");
 
         ArrayList<String> appropriateFacials = new ArrayList<>();
-        for (int i = 0; i < facials.size(); i ++) {
-            if (checkSkinType(skintype,facials.get(i))) {
-                appropriateFacials.add(facials.get(i));
+        for (String facial : facials) {
+            if (checkSkinType(skintype, facial)) {
+                appropriateFacials.add(facial);
             }
         }
 
-        return "menu";
+        model.addAttribute("appropriateFacials", appropriateFacials);
+        model.addAttribute("name", name);
+        model.addAttribute("skintype", skintype);
+        model.addAttribute("manipedi", manipedi);
+
+        return "menu"; // Assuming you have a template named "menu.html"
     }
 }
