@@ -38,5 +38,14 @@
 
     </div>
 
+<footer>
+    <div>Ask about our new colors!</div>
+    <div> id="polish-collection"</div>
+        <th:block th:each="option : ${polishChoices}">
+            <div class="polish-sample" th:style="`background: ` + ${option}"><</div>
+        </th:block>
+
+
+</footer>
 </body>
 </html>
