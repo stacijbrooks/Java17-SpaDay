@@ -37,5 +37,6 @@ public class User {
     }
 
     public String getVerifyPassword() {
+        return null;
     }
 }
