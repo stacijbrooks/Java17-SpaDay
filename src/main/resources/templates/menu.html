@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th = "http://www.thymeleaf.org/">
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head>
     <meta charset="UTF-8" />
     <title>Spa Menu</title>
@@ -7,45 +7,52 @@
 </head>
 <body>
 <h1>My Super Fancy Spa</h1>
-<div id = "clientProfile">
-</div>
-<h2>My Profile</h2>
+<div id="clientProfile">
+    <!-- Display client's profile information -->
+    <h2>My Profile</h2>
     <p th:text="${name}"></p>
     <p th:text="${skintype}"></p>
     <p th:text="${manipedi}"></p>
+</div>
 
-<div id = "servicesMenu">
+<div id="servicesMenu">
+    <!-- Display menu of available services -->
     <h2>Menu of Available Services</h2>
     <div>
         <h3>Facial Treatments</h3>
         <p>Our aestheticians recommend the following for your skin type:</p>
         <table>
+            <!-- Iterate over facial services -->
             <th:block th:each="service : ${appropriateFacials}">
                 <tr>
-                    <td>th:text="${service}"</td>
+                    <!-- Display each facial service -->
+                    <td th:text="${service}"></td>
                 </tr>
             </th:block>
         </table>
     </div>
-        </div> th:if="${manipedi.equals('manicure')}">
-    <h3>Manicure</h3>
-    <p> th:replace="~{fragments :: manicureDescription}></p>
 
-
-        </div> th:if="${manipedi.equals('pedicure')}">
-    <h3>Pedicure</h3>
-<p> th:replace="~{fragments :: pedicureDescription}></p>
-
+    <!-- Display Manicure or Pedicure description based on client's choice -->
+    <div th:if="${manipedi.equals('manicure')}">
+        <h3>Manicure</h3>
+        <p th:replace="~{fragments :: manicureDescription}"></p>
     </div>
 
+    <div th:if="${manipedi.equals('pedicure')}">
+        <h3>Pedicure</h3>
+        <p th:replace="~{fragments :: pedicureDescription}"></p>
+    </div>
+</div>
+
 <footer>
+    <!-- Display additional information in the footer -->
     <div>Ask about our new colors!</div>
-    <div> id="polish-collection"</div>
+    <div id="polish-collection">
+        <!-- Iterate over polish choices and display samples -->
         <th:block th:each="option : ${polishChoices}">
-            <div class="polish-sample" th:style="`background: ` + ${option}"><</div>
+            <div class="polish-sample" th:style="'background: ' + ${option}"></div>
         </th:block>
-
-
+    </div>
 </footer>
 </body>
 </html>
