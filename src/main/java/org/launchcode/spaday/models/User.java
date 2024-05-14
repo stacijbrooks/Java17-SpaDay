@@ -4,6 +4,7 @@ public class User {
     private String username;
     private String email;
     private String password;
+    private String verifyPassword;
 
     //Constructor
     public User(String username, String email, String password) {
@@ -37,6 +38,10 @@ public class User {
     }
 
     public String getVerifyPassword() {
-        return null;
+        return verifyPassword;
+    }
+
+    public void setVerifyPassword(String verifyPassword) {
+        this.verifyPassword = verifyPassword;
     }
 }
