@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
-public class UserController { user
+public class UserController {
 
     // Handler method to display the add user form
     @GetMapping("/user/add")
